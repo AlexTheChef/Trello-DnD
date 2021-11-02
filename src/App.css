@@ -26,6 +26,8 @@ html{
   height: 30px;
   width: 288px;
   border: 1px solid gray;
+  border-radius: 5px;
+  background-color: rgb(248, 248, 248);
 }
 
 .backlog{
