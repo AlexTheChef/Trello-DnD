@@ -13,10 +13,7 @@ html{
   justify-content: space-evenly;
 }
 
-.pictures{
-  display: none;
-  margin: 10px;
-}
+
 
 .component{
   display: flex;
