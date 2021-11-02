@@ -29,7 +29,7 @@ function DragDrop() {
     const [, drop1] = useDrop(() => ({
         accept: "item",
         drop: (item) => {
-            removeItemFromBoards1(item.id)
+            removeItemFromBoards(item.id)
             addItemToBoard1(item.id)          
         },
     }))
@@ -37,7 +37,7 @@ function DragDrop() {
     const [, drop2] = useDrop(() => ({
         accept: "item",
         drop: (item) => {
-            removeItemFromBoards2(item.id)
+            removeItemFromBoards(item.id)
             addItemToBoard2(item.id) 
         },
     }))
@@ -45,7 +45,7 @@ function DragDrop() {
     const [, drop3] = useDrop(() => ({
         accept: "item",
         drop: (item) => {
-           // removeItemFromBoards(item.id)
+            removeItemFromBoards(item.id)
             addItemToBoard3(item.id)            
         },
     }))
@@ -53,22 +53,17 @@ function DragDrop() {
     const [, drop4] = useDrop(() => ({
         accept: "item",
         drop: (item) =>{
-           // removeItemFromBoards(item.id)
+            removeItemFromBoards(item.id)
             addItemToBoard4(item.id)            
         },
     }))
 
-    const removeItemFromBoards1 = (id) => {
-        const brd1 = board1.filter((item) => item.id !== id)
-        const brd2 = board2.filter((item) => item.id !== id) 
-        setBoard1(brd1)
-        setBoard2(brd2)     
-    }
-    const removeItemFromBoards2 = (id) => {
-        const brd1 = board1.filter((item) => item.id !== id)
-        const brd2 = board2.filter((item) => item.id !== id) 
-        setBoard1(brd1)
-        setBoard2(brd2)     
+    const removeItemFromBoards = (id) => {
+        setBoard1(prev => prev.filter(item => item.id !== id))
+        setBoard2(prev => prev.filter(item => item.id !== id))  
+        setBoard3(prev => prev.filter(item => item.id !== id))
+        setBoard4(prev => prev.filter(item => item.id !== id))
+
     }
 
     const addItemToBoard1 = (id) => {
