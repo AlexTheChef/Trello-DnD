@@ -38,7 +38,7 @@ function DragDrop() {
         accept: "item",
         drop: (item) => {
             removeItemFromBoards(item.id)
-            addItemToBoard1(item.id)
+            addItemToBoard1(item)
         },
     }))
 
@@ -46,7 +46,7 @@ function DragDrop() {
         accept: "item",
         drop: (item) => {
             removeItemFromBoards(item.id)
-            addItemToBoard2(item.id)
+            addItemToBoard2(item)
         },
     }))
 
@@ -54,7 +54,7 @@ function DragDrop() {
         accept: "item",
         drop: (item) => {
             removeItemFromBoards(item.id)
-            addItemToBoard3(item.id)
+            addItemToBoard3(item)
         },
     }))
 
@@ -62,7 +62,7 @@ function DragDrop() {
         accept: "item",
         drop: (item) => {
             removeItemFromBoards(item.id)
-            addItemToBoard4(item.id)
+            addItemToBoard4(item)
         },
     }))
 
@@ -73,25 +73,18 @@ function DragDrop() {
         setBoard4(prev => prev.filter(item => item.id !== id))
     }
 
-    const addItemToBoard1 = (id) => {
-        const itemsList = board1.filter((item) => id === item.id)
-        setBoard1((board) => [...board, itemsList[0]])
-        console.log(board1)
+    const addItemToBoard1 = (item) => {      
+        setBoard1((board) => [...board, item])
     }
-    const addItemToBoard2 = (id) => {
-        const itemsList = board1.filter((item) => id === item.id)
-        setBoard2((board) => [...board, itemsList[0]])
+    const addItemToBoard2 = (item) => {       
+        setBoard2((board) => [...board, item])
     }
-    const addItemToBoard3 = (id) => {
-        const itemsList = board1.filter((item) => id === item.id)
-        setBoard3((board) => [...board, itemsList[0]])
+    const addItemToBoard3 = (item) => {      
+        setBoard3((board) => [...board, item])
     }
-    const addItemToBoard4 = (id) => {
-        const itemsList = board1.filter((item) => id === item.id)
-        setBoard4((board) => [...board, itemsList[0]])
+    const addItemToBoard4 = (item) => {
+        setBoard4((board) => [...board, item])
     }
-
-    console.log(board1)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -99,92 +92,99 @@ function DragDrop() {
         switch (option) {
             case '1':
                 return (
-                    setTemp(() => {return {id: Date.now(), text: input1}}),
-                    setBoard1((board) => [...board, temp])                   
+                    setTemp(() => { return { id: Date.now(), text: input1 } }),
+                    setBoard1((board) => [...board, { id: Date.now(), text: input1 }]),
+                    setInput1('')
                 )
             case '2':
-    return (
-        console.log('two')
-    )
+                return (
+                    setTemp(() => { return { id: Date.now(), text: input2 } }),
+                    setBoard2((board) => [...board, { id: Date.now(), text: input2 }]),
+                    setInput2('')
+                )
             case '3':
-    return (
-        console.log('three')
-    )
+                return (
+                    setTemp(() => { return { id: Date.now(), text: input3 } }),
+                    setBoard3((board) => [...board, { id: Date.now(), text: input3 }]),
+                    setInput3('')
+                )
             case '4':
-    return (
-        console.log('four')
-    )
+                return (
+                    setTemp(() => { return { id: Date.now(), text: input4 } }),
+                    setBoard4((board) => [...board, { id: Date.now(), text: input4 }]),
+                    setInput4('')
+                )
             default:
-    return
-}
+                return
+        }
     }
 
-return (
-    <>
-        <div className="containers">
-            <div className="container">
-                <h1>Backlog</h1>
-                <div className='backlog' ref={drop1}>
-                    {board1.map((item) => {
-                        return <Item text={item.text} key={item.id} id={item.id} />
-                    })}
-                    <form className="form">
-                        <label>
-                            Enter text:<br />
-                            <input type="text" name="name" value={input1} onInput={e => setInput1(e.target.value)} />&nbsp;
-                        </label>
-                        <input type="submit" value="Submit" data-option='1' onClick={handleSubmit} />
-                    </form>
+    return (
+        <>
+            <div className="containers">
+                <div className="container">
+                    <h1>Backlog</h1>
+                    <div className='backlog' ref={drop1}>
+                        {board1.map((item) => {
+                            return <Item text={item.text} key={item.id} id={item.id} />
+                        })}
+                        <form className="form">
+                            <label>
+                                Enter text:<br />
+                                <input type="text" name="name" value={input1} onInput={e => setInput1(e.target.value)} />&nbsp;
+                            </label>
+                            <input type="submit" value="Submit" data-option='1' onClick={handleSubmit} />
+                        </form>
+                    </div>
+                </div>
+                <div className="container">
+                    <h1>On Hold</h1>
+                    <div className='backlog' ref={drop2}>
+                        {board2.map((item) => {
+                            return <Item text={item.text} key={item.id} id={item.id} />
+                        })}
+                        <form className="form">
+                            <label>
+                                Enter text:<br />
+                                <input type="text" name="name" value={input2} onInput={e => setInput2(e.target.value)} />&nbsp;
+                            </label>
+                            <input type="submit" value="Submit" data-option='2' onClick={handleSubmit} />
+                        </form>
+                    </div>
+                </div>
+                <div className="container">
+                    <h1>In Progress</h1>
+                    <div className='backlog' ref={drop3}>
+                        {board3.map((item) => {
+                            return <Item text={item.text} key={item.id} id={item.id} />
+                        })}
+                        <form className="form">
+                            <label>
+                                Enter text:<br />
+                                <input type="text" name="name" value={input3} onInput={e => setInput3(e.target.value)} />&nbsp;
+                            </label>
+                            <input type="submit" value="Submit" data-option='3' onClick={handleSubmit} />
+                        </form>
+                    </div>
+                </div>
+                <div className="container">
+                    <h1>Complete</h1>
+                    <div className='backlog' ref={drop4}>
+                        {board4.map((item) => {
+                            return <Item text={item.text} key={item.id} id={item.id} />
+                        })}
+                        <form className="form">
+                            <label>
+                                Enter text:<br />
+                                <input type="text" name="name" value={input4} onInput={e => setInput4(e.target.value)} />&nbsp;
+                            </label>
+                            <input type="submit" value="Submit" data-option='4' onClick={handleSubmit} />
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div className="container">
-                <h1>On Hold</h1>
-                <div className='backlog' ref={drop2}>
-                    {board2.map((item) => {
-                        return <Item text={item.text} key={item.id} id={item.id} />
-                    })}
-                    <form className="form">
-                        <label>
-                            Enter text:<br />
-                            <input type="text" name="name" value={input2} onInput={e => setInput2(e.target.value)} />&nbsp;
-                        </label>
-                        <input type="submit" value="Submit" data-option='2' onClick={handleSubmit} />
-                    </form>
-                </div>
-            </div>
-            <div className="container">
-                <h1>In Progress</h1>
-                <div className='backlog' ref={drop3}>
-                    {board3.map((item) => {
-                        return <Item text={item.text} key={item.id} id={item.id} />
-                    })}
-                    <form className="form">
-                        <label>
-                            Enter text:<br />
-                            <input type="text" name="name" value={input3} onInput={e => setInput3(e.target.value)} />&nbsp;
-                        </label>
-                        <input type="submit" value="Submit" data-option='3' onClick={handleSubmit} />
-                    </form>
-                </div>
-            </div>
-            <div className="container">
-                <h1>Complete</h1>
-                <div className='backlog' ref={drop4}>
-                    {board4.map((item) => {
-                        return <Item text={item.text} key={item.id} id={item.id} />
-                    })}
-                    <form className="form">
-                        <label>
-                            Enter text:<br />
-                            <input type="text" name="name" value={input4} onInput={e => setInput4(e.target.value)} />&nbsp;
-                        </label>
-                        <input type="submit" value="Submit" data-option='4' onClick={handleSubmit} />
-                    </form>
-                </div>
-            </div>
-        </div>
-    </>
-);
+        </>
+    );
 }
 
 export default DragDrop;
