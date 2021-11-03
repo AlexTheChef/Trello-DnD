@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Item from '../Item/Item'
 import "../../App.css"
 import { useDrop } from 'react-dnd'
@@ -28,11 +28,37 @@ function DragDrop() {
     const [input3, setInput3] = useState('');
     const [input4, setInput4] = useState('');
 
+    useEffect(()=>{
+        const data1 = localStorage.getItem('board1')
+        const data2 = localStorage.getItem('board2')
+        const data3 = localStorage.getItem('board3')
+        const data4 = localStorage.getItem('board4')
+        if(data1) {
+            setBoard1(JSON.parse(data1))
+        }
+        if(data2){
+            setBoard2(JSON.parse(data2))
+        }
+        if(data3){
+            setBoard3(JSON.parse(data3))
+        }
+        if(data4){
+            setBoard4(JSON.parse(data4))
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('board1', JSON.stringify(board1))
+        localStorage.setItem('board2', JSON.stringify(board2))
+        localStorage.setItem('board3', JSON.stringify(board3))
+        localStorage.setItem('board4', JSON.stringify(board4))
+    })
+
+
     const [temp, setTemp] = useState({
         id: 23234,
         text: ''
     })
-
 
     const [, drop1] = useDrop(() => ({
         accept: "item",
