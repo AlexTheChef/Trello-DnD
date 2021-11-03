@@ -28,7 +28,14 @@ html{
 }
 
 .backlog{
+  position: relative;
   width: 300px;
   height: 500px;
   border: 2px solid gray;
+}
+
+.form{
+  position: absolute;
+  bottom: 10px;
+  left:10px;
 }
