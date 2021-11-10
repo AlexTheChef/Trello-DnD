@@ -23,8 +23,11 @@ function DragDrop() {
     const [board2, setBoard2] = useState([])
     const [board3, setBoard3] = useState([])
     const [board4, setBoard4] = useState([])
-    const [input, setInput] = useState('');
-   
+    const [input1, setInput1] = useState('');
+    const [input2, setInput2] = useState('');
+    const [input3, setInput3] = useState('');
+    const [input4, setInput4] = useState('');
+
     useEffect(()=>{
         const data1 = localStorage.getItem('board1')
         const data2 = localStorage.getItem('board2')
@@ -52,7 +55,7 @@ function DragDrop() {
     })
 
 
-    const [, setTemp] = useState({
+    const [temp, setTemp] = useState({
         id: 23234,
         text: ''
     })
@@ -109,34 +112,33 @@ function DragDrop() {
         setBoard4((board) => [...board, item])
     }
 
-    const settingBoard = () => {
-        setTemp(() => { return { id: Date.now(), text: input } })
-        setInput('')
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault()
         let option = e.target.dataset.option
         switch (option) {
             case '1':
                 return (
-                    settingBoard(),
-                    setBoard1((board) => [...board, { id: Date.now(), text: input }])
+                    setTemp(() => { return { id: Date.now(), text: input1 } }),
+                    setBoard1((board) => [...board, { id: Date.now(), text: input1 }]),
+                    setInput1('')
                 )
             case '2':
                 return (
-                    settingBoard(),
-                    setBoard2((board) => [...board, { id: Date.now(), text: input }])
+                    setTemp(() => { return { id: Date.now(), text: input2 } }),
+                    setBoard2((board) => [...board, { id: Date.now(), text: input2 }]),
+                    setInput2('')
                 )
             case '3':
                 return (
-                    settingBoard(),
-                    setBoard3((board) => [...board, { id: Date.now(), text: input }])
+                    setTemp(() => { return { id: Date.now(), text: input3 } }),
+                    setBoard3((board) => [...board, { id: Date.now(), text: input3 }]),
+                    setInput3('')
                 )
             case '4':
                 return (
-                    settingBoard(),
-                    setBoard4((board) => [...board, { id: Date.now(), text: input }])
+                    setTemp(() => { return { id: Date.now(), text: input4 } }),
+                    setBoard4((board) => [...board, { id: Date.now(), text: input4 }]),
+                    setInput4('')
                 )
             default:
                 return
@@ -155,7 +157,7 @@ function DragDrop() {
                         <form className="form">
                             <label>
                                 Enter text:<br />
-                                <input type="text" name="name" value={input} onInput={e => setInput(e.target.value)} />&nbsp;
+                                <input type="text" name="name" value={input1} onInput={e => setInput1(e.target.value)} />&nbsp;
                             </label>
                             <input type="submit" value="Submit" data-option='1' onClick={handleSubmit} />
                         </form>
@@ -170,7 +172,7 @@ function DragDrop() {
                         <form className="form">
                             <label>
                                 Enter text:<br />
-                                <input type="text" name="name" value={input} onInput={e => setInput(e.target.value)} />&nbsp;
+                                <input type="text" name="name" value={input2} onInput={e => setInput2(e.target.value)} />&nbsp;
                             </label>
                             <input type="submit" value="Submit" data-option='2' onClick={handleSubmit} />
                         </form>
@@ -185,7 +187,7 @@ function DragDrop() {
                         <form className="form">
                             <label>
                                 Enter text:<br />
-                                <input type="text" name="name" value={input} onInput={e => setInput(e.target.value)} />&nbsp;
+                                <input type="text" name="name" value={input3} onInput={e => setInput3(e.target.value)} />&nbsp;
                             </label>
                             <input type="submit" value="Submit" data-option='3' onClick={handleSubmit} />
                         </form>
@@ -200,7 +202,7 @@ function DragDrop() {
                         <form className="form">
                             <label>
                                 Enter text:<br />
-                                <input type="text" name="name" value={input} onInput={e => setInput(e.target.value)} />&nbsp;
+                                <input type="text" name="name" value={input4} onInput={e => setInput4(e.target.value)} />&nbsp;
                             </label>
                             <input type="submit" value="Submit" data-option='4' onClick={handleSubmit} />
                         </form>
